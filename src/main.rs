@@ -1,6 +1,6 @@
 mod shapes;
 
-use shapes::{area::Area, circle::Circle, collisions::Collidable, rect::Rect};
+use shapes::{circle::Circle, collisions::Collidable, rect::Rect};
 
 fn main() {
     let rect1 = Rect::default();
