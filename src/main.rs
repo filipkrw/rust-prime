@@ -1,17 +1,24 @@
-fn excercise() {
-    let path = std::env::args().nth(1).expect("Path not privded");
-    let file = std::fs::read_to_string(path).expect("Error reading file");
+mod shapes;
 
-    let lines = file.lines();
-
-    lines
-        .map(|line| match line.parse::<usize>() {
-            Ok(line) => return line.to_string(),
-            Err(_) => return String::from("Line not a number"),
-        })
-        .for_each(|line| println!("{}", line));
-}
+use shapes::{area::Area, circle::Circle, collisions::Collidable, rect::Rect};
 
 fn main() {
-    excercise();
+    let rect1 = Rect::default();
+    let rect2 = Rect::default();
+
+    let circle1 = Circle {
+        x: 0.0,
+        y: 0.0,
+        radius: 1.0,
+    };
+    let circle2 = Circle {
+        x: 3.0,
+        y: 5.0,
+        radius: 2.0,
+    };
+
+    rect1.collide(&rect2);
+    rect2.collide(&circle1);
+    circle1.collide(&circle2);
+    circle1.collide(&rect2);
 }
